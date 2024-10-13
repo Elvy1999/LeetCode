@@ -1,0 +1,2 @@
+right = middle - 1;
+    
