@@ -21,7 +21,7 @@ var mergeAlternately = function (word1, word2) {
 };
 
 var gcdOfStrings = function (str1, str2) {
-  let finalWord = "";
+  let finalWord = ""; // not correct solution comeback and revise
   for (let i = 0; i < str1.length; i++) {
     if (i < Math.str1.length / str2.length && str1[i] == str2[i]) {
       finalWord += str2[i];
