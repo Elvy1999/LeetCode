@@ -29,3 +29,19 @@ var gcdOfStrings = function (str1, str2) {
   }
   return finalWord;
 };
+
+var twoSum = function (nums, target) {
+  let solution = new Map(); // Store value and its index
+
+  for (let i = 0; i < nums.length; i++) {
+    let complement = target - nums[i]; // The number we need to complete the sum
+
+    if (solution.has(complement)) {
+      return [solution.get(complement), i]; // Return the indices if complement is found
+    }
+
+    solution.set(nums[i], i); // Store the current number and its index
+  }
+
+  return []; // Return empty array if no solution is found
+};
