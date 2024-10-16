@@ -10,7 +10,7 @@ int main(){
   int num3 = num1 + num2;
   printf("The sum of the two numbers is %d\n",num3);
   if(num1 > num2){
-    printf ("%d is greater than num %d", num1,num2);
+    printf ("%d is greater than num %d\n", num1,num2);
   }
   else{
     printf("%d is greater than num %d\n", num2,num1);
@@ -30,6 +30,22 @@ int main(){
     printf("%d\n", val);
     val = val*2;
   }
+
+  // working with pass by value
+  int max(int x, int y){
+    int bigger = x;
+    if(y > x){
+      bigger = y;
+    }
+    return bigger;
+  }
+  int numX,numY;
+  printf("Enter two numbers:");
+  scanf("%d%d",&numX,&numY);
+  int res = max(numX,numY);
+  //here numX and numY stay the same when the number is called because it is 
+  //pass by value
+  printf("The larger value of num %d and num %d is %d\n", numX,numY,res);
 
   
   return 0;
