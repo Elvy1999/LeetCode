@@ -8,7 +8,7 @@ char* selection(); // Prompts the user to select rock, paper, or scissors
 int menu();        // Displays the menu for the user
 int convert(char* userChoice); // converts string value to number
 char* numToStr(int number); // converts number to string
-void gameLogic(int *player1Choice, int *player2Choice); // logic for the game
+void gameLogic(int *player1Score, int *player2Score, int player1Choice, int player2Choice); // logic for the game
 
 int main() {
     // Seed the random number generator with the current time
@@ -38,6 +38,8 @@ int main() {
         }
         int AIscore = 0;
         int userScore = 0;
+        times--;
+        gameLogic(&AIscore, &userScore, user_choice_number, random_number);
     }
     // Free the allocated memory for the user's choice
     free(user_choice);
@@ -109,11 +111,36 @@ char* numToStr(int number) {
     }
 }
 
-void gameLogic(int *player1Choice, int *player2Choice){
-  if(*player1Choice == *player2Choice){
-    
+void gameLogic(int *player1Score, int *player2Score, int player1Choice, int player2Choice){
+  if(player1Choice == player2Choice){
+    printf("Tie!\n");
+  }
+  else if(player1Choice == 2 && player2Choice == 1){
+    printf("Scissors cuts paper\n");
+    *player1Score += 1;
+  }
+  else if(player1Choice == 0 && player2Choice == 2){  
+    printf("Rock bashes scissors\n");
+    *player1Score += 1;
+  }
+  else if(player1Choice == 1 && player2Choice == 0){
+    printf("Paper covers rock\n");
+    *player1Score += 1;
+  }
+  else if(player1Choice == 1 && player2Choice == 2){
+    printf("Scissors cuts paper\n");
+    *player2Score += 1;
+  }
+  else if(player1Choice == 2 && player2Choice == 0){
+    printf("Rock bashes scissors\n");
+    *player2Score += 1;
+  }
+  else if(player1Choice == 0 && player2Choice == 1){
+    printf("Paper covers rock\n");
+    *player2Score += 1;
   }
 }
+
 
 
 
