@@ -19,11 +19,9 @@ int main() {
 
     // Call the menu function to determine how many times the user wants to play
     int times = menu();
-
-    // Get the user's selection
-    char* user_choice = selection();
-    printf("You selected: %s\n", user_choice);
-
+    int AIscore = 0;
+    int userScore = 0;
+    
     while(times > 0) {
         // Convert the user's choice to a number
         char* user_choice = selection();
@@ -36,13 +34,20 @@ int main() {
             printf("You entered an invalid choice: %s.\n",user_choice);
           }
         }
-        int AIscore = 0;
-        int userScore = 0;
         times--;
         gameLogic(&AIscore, &userScore, user_choice_number, random_number);
+        printf("AI score: %d, PlayersScore: %d\n", AIscore, userScore);
     }
-    // Free the allocated memory for the user's choice
-    free(user_choice);
+
+    if(AIscore > userScore) {
+        printf("AI wins!\n");
+    }
+    else if(AIscore < userScore){
+        printf("Player wins!\n");
+    }
+    else{
+        printf("Draw!\n");
+    }
 
     return 0;
 }
@@ -111,6 +116,16 @@ char* numToStr(int number) {
     }
 }
 
+/**
+ * Compares the two players' choices and determines the winner.
+ * 
+ * The function prints out the winner of the round and updates the scores accordingly.
+ * 
+ * @param player1Score The score of player 1
+ * @param player2Score The score of player 2
+ * @param player1Choice The choice of player 1
+ * @param player2Choice The choice of player 2
+ */
 void gameLogic(int *player1Score, int *player2Score, int player1Choice, int player2Choice){
   if(player1Choice == player2Choice){
     printf("Tie!\n");
