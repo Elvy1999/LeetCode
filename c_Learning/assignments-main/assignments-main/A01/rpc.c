@@ -8,7 +8,7 @@ char* selection(); // Prompts the user to select rock, paper, or scissors
 int menu();        // Displays the menu for the user
 int convert(char* userChoice); // converts string value to number
 char* numToStr(int number); // converts number to string
-void gameLogic(int *player1Score, int *player2Score, int player1Choice, int player2Choice); // logic for the game
+void gameLogic(int *player2Score, int *player1Score, int player1Choice, int player2Choice); // logic for the game
 
 int main() {
     // Seed the random number generator with the current time
@@ -86,6 +86,13 @@ int menu() {
  * @param userChoice the user's choice
  * @return the converted number
  */
+
+/**
+ * Converts a numeric value to its corresponding string representation for rock, paper, or scissors.
+ * 
+ * @param number The numeric value to be converted
+ * @return The string value representing rock, paper, scissors, or "Invalid number" if the input is not 0, 1, or 2
+ */
 int convert(char* userChoice) {
     if (strcmp(userChoice, "rock") == 0) {
         return 0;
@@ -97,13 +104,6 @@ int convert(char* userChoice) {
         return -1;
     }
 }
-
-/**
- * Converts a numeric value to its corresponding string representation for rock, paper, or scissors.
- * 
- * @param number The numeric value to be converted
- * @return The string value representing rock, paper, scissors, or "Invalid number" if the input is not 0, 1, or 2
- */
 char* numToStr(int number) {
     if (number == 0) {
         return "rock";
@@ -116,45 +116,31 @@ char* numToStr(int number) {
     }
 }
 
-/**
- * Compares the two players' choices and determines the winner.
- * 
- * The function prints out the winner of the round and updates the scores accordingly.
- * 
- * @param player1Score The score of player 1
- * @param player2Score The score of player 2
- * @param player1Choice The choice of player 1
- * @param player2Choice The choice of player 2
- */
-void gameLogic(int *player1Score, int *player2Score, int player1Choice, int player2Choice){
-  if(player1Choice == player2Choice){
-    printf("Tie!\n");
-  }
-  else if(player1Choice == 2 && player2Choice == 1){
-    printf("Scissors cuts paper\n");
-    *player1Score += 1;
-  }
-  else if(player1Choice == 0 && player2Choice == 2){  
-    printf("Rock bashes scissors\n");
-    *player1Score += 1;
-  }
-  else if(player1Choice == 1 && player2Choice == 0){
-    printf("Paper covers rock\n");
-    *player1Score += 1;
-  }
-  else if(player1Choice == 1 && player2Choice == 2){
-    printf("Scissors cuts paper\n");
-    *player2Score += 1;
-  }
-  else if(player1Choice == 2 && player2Choice == 0){
-    printf("Rock bashes scissors\n");
-    *player2Score += 1;
-  }
-  else if(player1Choice == 0 && player2Choice == 1){
-    printf("Paper covers rock\n");
-    *player2Score += 1;
-  }
+void gameLogic(int *player2Score, int *player1Score, int player1Choice, int player2Choice) {
+    if (player1Choice == player2Choice) {
+        printf("Tie!\n");
+    } else if (player1Choice == 2 && player2Choice == 1) {
+        printf("Scissors cuts paper\n");
+        *player1Score += 1;  // Player wins
+    } else if (player1Choice == 0 && player2Choice == 2) {
+        printf("Rock bashes scissors\n");
+        *player1Score += 1;  // Player wins
+    } else if (player1Choice == 1 && player2Choice == 0) {
+        printf("Paper covers rock\n");
+        *player1Score += 1;  // Player wins
+    } else if (player1Choice == 1 && player2Choice == 2) {
+        printf("Scissors cuts paper\n");
+        *player2Score += 1;  // AI wins
+    } else if (player1Choice == 2 && player2Choice == 0) {
+        printf("Rock bashes scissors\n");
+        *player2Score += 1;  // AI wins
+    } else if (player1Choice == 0 && player2Choice == 1) {
+        printf("Paper covers rock\n");
+        *player2Score += 1;  // AI wins
+    }
 }
+
+
 
 
 
