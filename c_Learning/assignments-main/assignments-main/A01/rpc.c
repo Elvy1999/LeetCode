@@ -1,89 +1,121 @@
-#include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>  // Include time.h for the time() function
 
+// Function prototypes
+char* selection(); // Prompts the user to select rock, paper, or scissors
+int menu();        // Displays the menu for the user
+int convert(char* userChoice); // converts string value to number
+char* numToStr(int number); // converts number to string
+void gameLogic(int *player1Choice, int *player2Choice); // logic for the game
 
-// Define the `snack` struct
-struct snack {
-  char name[100];
-  float price;
-  int quantity;
-};
-// Declare the `menu` function with the correct return type and parameters
-void menu(struct snack snack1, struct snack snack2, struct snack snack3);
-
-// Main function
 int main() {
-  srand(time(0)); // Seed the random number generator
+    // Seed the random number generator with the current time
+    srand(time(0));
 
-  // Initialize the snacks
-  struct snack s1 = {"Coco Puffs", 1.50, 4};
-  struct snack s2 = {"Manchego cheese", 15.50, 6};
-  struct snack s3 = {"Magic beans", 0.50, 0};
+    // Generate a random number between 0 and 2
+    int random_number = rand() % 3;
 
-  int choice;
-  float money;
-  printf("Welcome to the snack shop!\n");
-  printf("How much money do you have?$");
-  scanf("%f", &money);
-  // Call the menu function
-  menu(s1, s2, s3);
-  printf("\n what snack would you like?\n");
-  scanf("%d", &choice);
-  if(choice == 0){
-    if(money >= s1.price && s1.quantity > 0){
-      money -= s1.price;
-      s1.quantity--;
-      printf("You bought a %s for $%.2f\n", s1.name, s1.price);
-      printf("you have $%.2f left\n", money);
+    // Call the menu function to determine how many times the user wants to play
+    int times = menu();
+
+    // Get the user's selection
+    char* user_choice = selection();
+    printf("You selected: %s\n", user_choice);
+
+    while(times > 0) {
+        // Convert the user's choice to a number
+        char* user_choice = selection();
+        int random_number = rand() % 3;
+        char* computer_choice = numToStr(random_number);
+        printf("AI selected: %s\n", computer_choice);
+        int user_choice_number = convert(user_choice);
+        {
+          if(user_choice_number == -1) {
+            printf("You entered an invalid choice: %s.\n",user_choice);
+          }
+        }
+        int AIscore = 0;
+        int userScore = 0;
     }
-    else if(money < s1.price){
-      printf("Sorry you cant afford it\n");
+    // Free the allocated memory for the user's choice
+    free(user_choice);
+
+    return 0;
+}
+
+// Function to prompt the user for their selection
+char* selection() {
+    // Dynamically allocate memory for the user's choice
+    char* choice = (char*)malloc(100 * sizeof(char));
+    if (choice == NULL) {
+        printf("Memory allocation failed!\n");
+        exit(1);
     }
-    else{
-      printf("Sorry we are out of %s\n", s1.name);
+
+    // Prompt the user to choose rock, paper, or scissors
+    printf("What do you choose? rock, paper, or scissors: ");
+    scanf("%99s", choice);  // Use %99s to prevent buffer overflow
+
+    return choice;  // Return the dynamically allocated choice
+}
+
+// Function to display the menu and get the number of times to play
+int menu() {
+    int times;
+    printf("How many times do you want to play? ");
+    scanf("%d", &times);
+    return times;
+}
+
+/**
+ * Converts the user's choice to a number.
+ * 0 = rock
+ * 1 = paper
+ * 2 = scissors
+ * -1 = invalid choice
+ *
+ * @param userChoice the user's choice
+ * @return the converted number
+ */
+int convert(char* userChoice) {
+    if (strcmp(userChoice, "rock") == 0) {
+        return 0;
+    } else if (strcmp(userChoice, "paper") == 0) {
+        return 1;
+    } else if (strcmp(userChoice, "scissors") == 0) {
+        return 2;
+    } else {
+        return -1;
     }
+}
+
+/**
+ * Converts a numeric value to its corresponding string representation for rock, paper, or scissors.
+ * 
+ * @param number The numeric value to be converted
+ * @return The string value representing rock, paper, scissors, or "Invalid number" if the input is not 0, 1, or 2
+ */
+char* numToStr(int number) {
+    if (number == 0) {
+        return "rock";
+    } else if (number == 1) {
+        return "paper";
+    } else if (number == 2) {
+        return "scissors";
+    } else {
+        return "Invalid number";
+    }
+}
+
+void gameLogic(int *player1Choice, int *player2Choice){
+  if(*player1Choice == *player2Choice){
+    
   }
-    if(choice == 1){
-      if(money >= s2.price && s2.quantity > 0){
-        money -= s2.price;
-        s2.quantity--;
-        printf("You bought a %s for $%.2f\n", s2.name, s2.price);
-        printf("you have $%.2f left\n", money);
-      }
-      else if(money < s2.price){
-        printf("Sorry you cant afford it\n");
-      }
-      else{
-        printf("Sorry we are out of %s\n", s2.name);
-      }
-    }
-      if(choice == 2){
-        if(money >= s3.price && s3.quantity > 0){
-          money -= s3.price;
-          s3.quantity--;
-          printf("You bought a %s for $%.2f\n", s3.name, s3.price);
-          printf("you have $%.2f left\n", money);
-        }
-        else if(money < s3.price){
-          printf("Sorry you cant afford it\n");
-        }
-        else{
-          printf("Sorry we are out of %s\n", s3.name);
-        }
-      }
-  
-
-
-  return 0;
 }
 
-// Define the `menu` function
-void menu(struct snack snack1, struct snack snack2, struct snack snack3) {
-   printf("Available Snacks:\n");
-   printf("0) %s\t\tcost: $%.2f\tquantity: %d\n", snack1.name, snack1.price, snack1.quantity);
-   printf("1) %s\tcost: $%.2f\tquantity: %d\n", snack2.name, snack2.price, snack2.quantity);
-   printf("2) %s\t\tcost: $%.2f\tquantity: %d\n", snack3.name, snack3.price, snack3.quantity);
-}
+
+
 
 
