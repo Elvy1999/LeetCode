@@ -7,9 +7,12 @@ repeat : repeat.c
 wordguess : wordguess.c
 	gcc wordguess.c -o wordguess
 
+fibonaci : fibonaci.c	
+	gcc fibonaci.c -o fibonaci
+
 all: dynamic_snackbar repeat wordguess
 	
 
 clean :
-	rm wordguess repeat dynamic_snackbar 2> /dev/null
+	rm wordguess repeat dynamic_snackbar fibonaci calculator 2> /dev/null
 
