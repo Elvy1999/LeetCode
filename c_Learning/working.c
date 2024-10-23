@@ -61,11 +61,12 @@ int main(){
   
   struct studentT student1;
 
+  strcpy(student1.name, "Elvy");
   student1.age = 18+2;
   student1.gpa = 3.4;
   student1.grad_yr = 2024;
 
-  printf("The grad year of student1 is %d\n", student1.grad_yr);
+  printf("The grad year of %s is %d\n", student1.grad_yr);
   
   return 0;
 }
