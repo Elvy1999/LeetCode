@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Node
 {
@@ -16,7 +17,7 @@ struct Node *createNewNode(int data)
 void insertAtBeginning(struct Node **head, int value)
 {
   struct Node *newNode = createNewNode(value);
-  newNode->next = head;
+  newNode->next = *head;
   *head = newNode;
 }
 
@@ -39,7 +40,7 @@ void insertAtEnd(struct Node **head, int value)
 void displayList(struct Node *head)
 {
   struct Node *temp = head;
-  while (temp->next != NULL)
+  while (temp != NULL)
   {
     printf("%d -> ", temp->data);
     temp = temp->next;
@@ -67,9 +68,22 @@ void deleteNode(struct Node **head, int key)
 
   if (temp == NULL)
     return;
+
+  prev->next = temp->next;
+  free(temp);
 }
 
 int main()
 {
+  struct Node *head = NULL;
+  insertAtBeginning(&head, 10);
+  insertAtBeginning(&head, 5);
+  insertAtEnd(&head, 30);
+  insertAtEnd(&head, 30);
+  displayList(head);
+  printf("\n");
+  deleteNode(&head, 30);
+  printf("\n");
+  displayList(head);
   return 0;
 }
