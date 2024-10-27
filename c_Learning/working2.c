@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <time.h>
 
 int isPalindrome(char str[])
 {
@@ -83,14 +84,24 @@ int main()
 
   // check if a string is a palindrome
 
-  printf("Enter a string to see if it is a palindrome:");
-  char string[100];
-  scanf("%99s", string);
-  printf("The word you entered was %s\n", string);
-  int result = isPalindrome2(string) == 1 ? 1 : 0;
-  if (result == 1)
-    printf("%s is a palindrome\n", string);
-  else
-    printf("%s is not a palindrome\n", string);
-  return 0;
+  srand(time(0));
+  int randomNumber = (rand() % 100) + 1;
+  int guess;
+  printf("Welcome to the guessing game\n");
+  while (guess != randomNumber)
+  {
+    printf("Enter a number between 1 and 100: \n");
+    scanf("%d", &guess);
+    if (guess < randomNumber)
+    {
+      printf("Guess was too low\n");
+    }
+    else if (guess > randomNumber)
+    {
+      printf("Guess was to high\n");
+    }
+    else
+      break;
+  }
+  printf("You guessed the correct number which is %d\n", randomNumber);
 }
