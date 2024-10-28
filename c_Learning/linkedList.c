@@ -6,24 +6,24 @@ struct Node
   struct Node *next;
   int data;
 };
-struct Node *createNewNode(int data)
+
+struct Node *creatNode(int data)
 {
-  struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+  struct Node *newNode = malloc(sizeof(struct Node));
   newNode->data = data;
   newNode->next = NULL;
-  return newNode;
 }
 
-void insertAtBeginning(struct Node **head, int value)
+void insertAtBeginning(struct Node **head, int data)
 {
-  struct Node *newNode = createNewNode(value);
+  struct Node *newNode = creatNode(data);
   newNode->next = *head;
   *head = newNode;
 }
 
-void insertAtEnd(struct Node **head, int value)
+void insertAtEnd(struct Node **head, int data)
 {
-  struct Node *newNode = createNewNode(value);
+  struct Node *newNode = creatNode(data);
   if (*head == NULL)
   {
     *head = newNode;
@@ -37,40 +37,39 @@ void insertAtEnd(struct Node **head, int value)
   temp->next = newNode;
 }
 
+void deleteNode(struct Node **head, int key)
+{
+  struct Node *current = *head;
+  struct Node *prev = NULL;
+  if (current->data == key)
+  {
+    *head = current->next;
+    free(current);
+    return;
+  }
+  while (current != NULL && current->data != key)
+  {
+    prev = current;
+    current = current->next;
+  }
+
+  if (current == NULL)
+  {
+    return;
+  }
+  prev->next = current->next;
+  free(current);
+}
+
 void displayList(struct Node *head)
 {
   struct Node *temp = head;
   while (temp != NULL)
   {
-    printf("%d -> ", temp->data);
+    printf("%d ->", temp->data);
     temp = temp->next;
   }
   printf("NULL");
-}
-
-void deleteNode(struct Node **head, int key)
-{
-  struct Node *temp = *head;
-  struct Node *prev = NULL;
-
-  if (temp != NULL && temp->data == key)
-  {
-    *head = temp->next;
-    free(temp);
-    return;
-  }
-
-  while (temp->data != key && temp != NULL)
-  {
-    prev = temp;
-    temp = temp->next;
-  }
-
-  if (temp == NULL)
-    return;
-
-  prev->next = temp->next;
-  free(temp);
 }
 
 int main()
