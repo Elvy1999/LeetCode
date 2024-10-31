@@ -24,7 +24,7 @@ int main()
   int random_number = rand() % 100 + 1;
   printf("Enter a number between 1 and 100\n");
   int number;
-  int guess = 0;
+  int guess = 1;
   scanf("%d", &number);
   while (number != random_number)
   {

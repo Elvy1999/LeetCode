@@ -11,18 +11,18 @@ int main()
   scanf("%31s", str);
   printf("Enter a count: ");
   scanf("%d", &number);
-  char *ptr = malloc(sizeof(char) * (strlen(str) + 1));
-  if (ptr == NULL)
+  char *str = malloc(sizeof(char) * (strlen(str) + 1));
+  if (str == NULL)
   {
     printf("Memory allocation failed!\n");
     exit(1);
   }
-  strcpy(ptr, str);
+  strcpy(str, str);
   for (int i = 0; i < number; i++)
   {
-    printf("%s", ptr);
+    printf("%s", str);
   }
   printf("\n");
-  free(ptr);
+  free(str);
   return 0;
 }
