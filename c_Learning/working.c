@@ -32,29 +32,58 @@ void reverse(char *str)
   printf("Reversed string:%s\n", str);
 }
 
-void primeChecker(int number)
+int palindromeChecker(char str[])
 {
-  if (number <= 1)
-  { // Check if the number is less than or equal to 1
-    printf("%d is not prime\n", number);
-    return;
-  }
-
-  double range = sqrt(number);
-  for (int i = 2; i <= range; i++)
+  int start = 0;
+  int end = strlen(str) - 1;
+  while (start < end)
   {
-    if (number % i == 0)
+    if (str[start] != str[end])
     {
-      printf("%d is not prime\n", number);
-      return;
+      printf("%s is not a palindrome\n", str);
+      return 0;
     }
+    start++;
+    end--;
   }
-
-  // If no divisors are found, the number is prime
-  printf("%d is prime\n", number);
+  printf("%s is a palindrome\n", str);
+  return 1;
 }
+
+typedef struct Node
+{
+  struct Node *next;
+  int data;
+} Node;
+
+Node *createNode(int data)
+{
+  Node *newNode = (Node *)malloc(sizeof(Node));
+  newNode->data = data;
+  newNode->next = NULL;
+  return newNode;
+}
+
+void displayNodes(Node *head)
+{
+  Node *temp = head;
+  while (temp != NULL)
+  {
+    printf("%d ->", temp->data);
+    temp = temp->next;
+  }
+  printf("NULL\n");
+}
+
 int main()
 {
-  primeChecker(13);
+  Node *head = createNode(1);
+  Node *val1 = createNode(2);
+  head->next = val1;
+  displayNodes(head);
+  Node *val2 = createNode(3);
+  val1->next = val2;
+  displayNodes(head);
+
   return 0;
 }
