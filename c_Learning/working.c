@@ -1,73 +1,60 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+#include <math.h>
 
-int main(){
-  printf("\nHello, World\n");
-  int num1,num2;
-  printf("Enter the 1st number:");
-  scanf("%d", &num1);
-  printf("Enter the 2nd number:");
-  scanf("%d", &num2);
-  int num3 = num1 + num2;
-  printf("The sum of the two numbers is %d\n",num3);
-  if(num1 > num2){
-    printf ("%d is greater than num %d\n", num1,num2);
-  }
-  else{
-    printf("%d is greater than num %d\n", num2,num1);
-  }
-
-  //USING A WHILE LOOP
-
-  int num4;
-  printf("Enter a number:");
-  scanf("%d",&num4);
-  if(num4<0){ // make sure number is not negative
-    num4 = -num4;
-  }
-  int val = 1;
-
-  while(val < num4){
-    printf("%d\n", val);
-    val = val*2;
-  }
-
-  // working with pass by value
-  int max(int x, int y){
-    int bigger = x;
-    if(y > x){
-      bigger = y;
+int findMax(int array[], int length)
+{
+  int largestNum = array[0];
+  for (int i = 1; i < length; i++)
+  {
+    if (array[i] > largestNum)
+    {
+      largestNum = array[i];
     }
-    return bigger;
   }
-  int numX,numY;
-  printf("Enter two numbers:");
-  scanf("%d%d",&numX,&numY);
-  int res = max(numX,numY);
-  //here numX and numY stay the same when the max function is 
-  // called because it is pass by value
-  printf("The larger value of num %d and num %d is %d\n", numX,numY,res);
-  
-  // working with structs in c which are like weaker classes in c+
-
-  struct studentT{ 
-    char name[64];
-    int age;
-    float gpa;
-    int grad_yr;
-  };
-
-  //defining the struct, many instances
-  
-  struct studentT student1;
-
-  strcpy(student1.name, "Elvy");
-  student1.age = 18+2;
-  student1.gpa = 3.4;
-  student1.grad_yr = 2024;
-
-  printf("The grad year of %s is %d\n", student1.grad_yr);
-  
-  return 0;
+  return largestNum;
 }
 
+void reverse(char *str)
+{
+  int end = strlen(str) - 1;
+  int start = 0;
+  while (start < end)
+  {
+    char temp = str[start];
+    str[start] = str[end];
+    str[end] = temp;
+    start++;
+    end--;
+  }
+  printf("Reversed string:%s\n", str);
+}
+
+void primeChecker(int number)
+{
+  if (number <= 1)
+  { // Check if the number is less than or equal to 1
+    printf("%d is not prime\n", number);
+    return;
+  }
+
+  double range = sqrt(number);
+  for (int i = 2; i <= range; i++)
+  {
+    if (number % i == 0)
+    {
+      printf("%d is not prime\n", number);
+      return;
+    }
+  }
+
+  // If no divisors are found, the number is prime
+  printf("%d is prime\n", number);
+}
+int main()
+{
+  primeChecker(13);
+  return 0;
+}
