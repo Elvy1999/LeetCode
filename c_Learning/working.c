@@ -75,15 +75,45 @@ void displayNodes(Node *head)
   printf("NULL\n");
 }
 
+Node *reverseNodes(Node *head)
+{
+  Node *next = NULL;
+  Node *prev = NULL;
+  Node *current = head;
+  while (current != NULL)
+  {
+    next = current->next;
+    current->next = prev;
+    prev = current;
+    current = next;
+  }
+
+  head = prev;
+  return head;
+}
+
+void findMinAndMax(int arr[], int length, int *max, int *min)
+{
+  *min = arr[0];
+  *max = arr[0];
+  for (int i = 0; i < length; i++)
+  {
+    if (arr[i] > *max)
+      *max = arr[i];
+    if (arr[i] < *min)
+      *min = arr[i];
+  }
+}
+
 int main()
 {
-  Node *head = createNode(1);
-  Node *val1 = createNode(2);
-  head->next = val1;
-  displayNodes(head);
-  Node *val2 = createNode(3);
-  val1->next = val2;
-  displayNodes(head);
+
+  int max = 0;
+  int min = 0;
+  int arr[] = {23, 67, 12, 89, 34, 56};
+  int length = sizeof(arr) / sizeof(arr[0]);
+  findMinAndMax(arr, length, &max, &min);
+  printf("The min is %d and the max is %d\n", min, max);
 
   return 0;
 }
