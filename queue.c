@@ -102,5 +102,7 @@ int main()
   enqueue(queue, 4);
   enqueue(queue, 5);
   display(queue);
+  dequeue(queue);
+  display(queue);
   return 0;
 }

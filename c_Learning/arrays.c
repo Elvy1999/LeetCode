@@ -4,7 +4,7 @@
 typedef struct Array
 {
   int *A;
-  int size;
+  int size[10];
   int length;
 } Array;
 
@@ -20,22 +20,12 @@ void display(Array arr)
 
 int main()
 {
-
-  Array arr;
-  int n;
-  printf("Enter size of an array:");
-  scanf("%d", &arr.size);
-  arr.A = malloc(sizeof(arr.size * sizeof(int)));
-  arr.length = 0;
-  printf("Enter number of numbers:");
-  scanf("%d", &n);
-  for (int i = 0; i < n; i++)
+  char s[] = "Welcome";
+  int i;
+  for (i = 0; s[i] != '\0'; i++)
   {
-    scanf("%d", &arr.A[i]);
   }
-  arr.length = n;
-
-  display(arr);
+  printf("%d\n", i);
 
   return 0;
 }
