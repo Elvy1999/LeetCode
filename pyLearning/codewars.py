@@ -6,8 +6,6 @@ def get_count(sentence):
       count+=1
   return(count)
 
-print(get_count("aeiou"))
-
 def beeramid(bonus, price):
     if(bonus <= 0): return 0
     totalBeers = bonus/price
@@ -21,9 +19,12 @@ def beeramid(bonus, price):
     return i;
   
 def lessThan5(list):
+  container = []
+  lessNumber = int(input("Give me a number that you want me to print under:"))
   for i in list:
-    if i < 5:
-      print(i)
+    if i < lessNumber:
+      container.append(i);
+  print(container)
 
 lessThan5([1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89])
   
