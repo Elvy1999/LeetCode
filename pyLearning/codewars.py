@@ -1,3 +1,5 @@
+import math
+
 def get_count(sentence):
   vowels = "a e i o u".split(" ")
   count = 0
@@ -18,13 +20,12 @@ def beeramid(bonus, price):
       i -= 2
     return i;
   
-def lessThan5(list):
-  container = []
-  lessNumber = int(input("Give me a number that you want me to print under:"))
-  for i in list:
-    if i < lessNumber:
-      container.append(i);
-  print(container)
 
-lessThan5([1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89])
+number = int(input("Enter a number:"))
+divisors = []
+for i in range(1,number+1):
+  if number%i == 0:
+    divisors.append(i)
+print(divisors)
+
   
