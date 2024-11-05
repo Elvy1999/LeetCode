@@ -20,4 +20,10 @@ def beeramid(bonus, price):
       i -= 2
     return i;
   
-print(beeramid(5000, 3))
+def lessThan5(list):
+  for i in list:
+    if i < 5:
+      print(i)
+
+lessThan5([1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89])
+  
