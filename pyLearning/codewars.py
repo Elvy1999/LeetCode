@@ -66,12 +66,28 @@ b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
 # print(combineList(a,b))
 
-number = int(input("Enter a number to check if it is prime:"))
-def primeChecker(number):
-  ceiling = int(math.sqrt(number))
-  for i in range(2,ceiling+1):
-    if(number%i==0):
-      return print(f"{number} is not a prime number")
-  return print(f"{number} is a prime number")
+# number = int(input("Enter a number to check if it is prime:"))
+# def primeChecker(number):
+#   ceiling = int(math.sqrt(number))
+#   for i in range(2,ceiling+1):
+#     if(number%i==0):
+#       return print(f"{number} is not a prime number")
+#   return print(f"{number} is a prime number")
  
-print(primeChecker(number))     
+# print(primeChecker(number)) 
+
+count = int(input("How many Fibonacci numbers do you want to generate: "))
+
+def fibonacciGen(number):
+  fibonacciNums = []
+  a = 0
+  b = 1
+  for _ in range(number):
+    fibonacciNums.append(a)
+    a = b
+    b = a+b
+  return fibonacciNums
+
+print(fibonacciGen(count))
+
+
