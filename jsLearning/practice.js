@@ -25,6 +25,10 @@ sumAll = (num1, num2) => {
   return total;
 };
 
+const leapYears = (year) => year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
+
 console.log(reverseString("Hello"));
 console.log(removeFromArray([1, 2, 3, 4], 3));
 console.log(sumAll(1, 4));
+console.log(leapYears(2000));
+console.log(leapYears(1985));
