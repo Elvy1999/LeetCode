@@ -51,6 +51,17 @@ fibonnaci = (num) => {
   return fibs;
 };
 
+const books = [
+  {
+    title: 'Book',
+    author: 'Name'
+  },
+  {
+    title: 'Book2',
+    author: 'Name2'
+  }
+]
+
 console.log(fibonnaci(10));
 
 console.log(reverseString("Hello"));
