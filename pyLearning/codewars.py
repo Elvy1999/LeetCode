@@ -76,19 +76,19 @@ b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
  
 # print(primeChecker(number)) 
 
-count = int(input("How many Fibonacci numbers do you want to generate: "))
+# count = int(input("How many Fibonacci numbers do you want to generate: "))
 
-def fibonacciGen(number):
-  fibonacciNums = []
-  a = 0
-  b = 1
-  for _ in range(number):
-    fibonacciNums.append(a)
-    a = b
-    b = a+b
-  return fibonacciNums
+# def fibonacciGen(number):
+#   fibonacciNums = []
+#   a = 0
+#   b = 1
+#   for _ in range(number):
+#     fibonacciNums.append(a)
+#     a = b
+#     b = a+b
+#   return fibonacciNums
 
-print(fibonacciGen(count))
+# print(fibonacciGen(count))
 
 def smallestNumber(numbers):
   smallest = None
@@ -104,5 +104,9 @@ def smallestNumber(numbers):
 numbers = [55,34,2,3,1,88,99,-1]
 
 print(smallestNumber(numbers))
+
+s = "Monty Python"
+print(s[1:])
+print(s.find("onty"))
 
 
