@@ -1,6 +1,7 @@
 import math
 import random
 
+
 # def get_count(sentence):
 #   vowels = "a e i o u".split(" ")
 #   count = 0
@@ -127,8 +128,35 @@ def isAnagram(s:str, t:str) -> bool:
   
 print(isAnagram("racecar","carrace"))
 
-class Solution:
-  def twoSum(self, nums: List[int], target: int) -> List[int]:
-    hashmap = {}
-    for i,n in enumerate(nums):
-      pass
+
+  
+def twoSum(nums,target):
+  prevMap = {}
+  for i,n in enumerate(nums):
+    diff = target - n
+    if diff in prevMap:
+      return [prevMap[diff],i]
+    prevMap[n] = i
+    
+def groupAnagrams(strs):
+  map = {}
+  for word in strs:
+    key = "".join(sorted(word))
+    if key not in map:
+      map[key] = [word]
+    else:
+      map[key].append(word)
+  return list(map.values())
+
+words = ["eat","tea","tan","ate","nat","bat"]
+print(groupAnagrams(words))  \
+  
+
+tWords = list(filter(lambda w: w[0] == "t" or w[0] == "a", words)) 
+print(tWords)  
+
+def reverseString(input):
+  input = " ".join(list(reversed(input.split(" "))))
+  return input
+
+print(reverseString("My name is Michele"))
