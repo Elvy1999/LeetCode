@@ -22,6 +22,28 @@ class LinkedList:
       tempNode = tempNode.next
     tempNode.next = new_node
     
+  def deleteData(self,data):
+    tempNode = self.head
+    tempPrev = None
+    while(tempNode and tempNode.data != data):
+      tempPrev = tempNode
+      tempNode = tempNode.next
+    if(tempNode == None): 
+      return
+    if tempPrev is None:# If the node to delete is the head
+        self.head = tempNode.next  # Update head to the next node
+    else:
+        # Bypass the node to delete
+        tempPrev.next = tempNode.next 
+  
+  def findLength(self):
+    tempNode = self.head
+    counter = 0
+    while(tempNode != None):
+      counter+=1
+      tempNode = tempNode.next
+    return counter
+  
   def showLinkedList(self):
       temp = self.head
       while temp:
