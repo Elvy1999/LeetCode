@@ -22,3 +22,13 @@ def isAnagram(s,t):
   return True
   
 
+def twoSum(nums,target):
+  numsMap = {}
+  for i in range(len(nums)):
+    index = target - nums[i]
+    if nums[i] in numsMap:
+      return [numsMap[nums[i]],i]
+    else:
+      numsMap[index] = i
+
+print(twoSum([4,5,6],10)) 
