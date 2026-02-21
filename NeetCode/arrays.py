@@ -32,3 +32,46 @@ def twoSum(nums,target):
       numsMap[index] = i
 
 print(twoSum([4,5,6],10)) 
+
+def longestCommonPrefix(strs):
+  prefixMap = {}
+  for word in strs:
+    letters = ""
+    for letter in word:
+      letters += letter
+      if letters in prefixMap:
+        prefixMap[letters] += 1
+      else:
+        prefixMap[letters] = 1
+  prefixMap = sorted(prefixMap.items(), key = lambda item: (item[1],item[0]), reverse = True)
+  print(prefixMap)
+  possiblePrefix = prefixMap[0]
+  answer = possiblePrefix[0] if possiblePrefix[1] > 1 else '""'
+  print(answer)
+
+def longestCommonPrefix2(strs):
+  prefix = strs[0]
+  for i in range(len(strs)):
+    j = 0
+    word = strs[i]
+    while j < min(len(word), len(prefix)):
+      if word[j] != prefix[j]:
+        break
+      j += 1
+    prefix = prefix[:j]
+  print(prefix)
+  return prefix
+
+
+def groupAnagrams(strs):
+  map = {}
+  for word in strs:
+    key = "".join(sorted(word))
+    if key in map:
+      map[key].append(word)
+    else:
+      map[key] = [word]
+  return list(map.values())
+  
+
+    
