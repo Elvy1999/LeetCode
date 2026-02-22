@@ -74,4 +74,21 @@ def groupAnagrams(strs):
   return list(map.values())
   
 
-    
+def removeElement(nums,val):
+  nums[:] = [num for num in nums if num != val]
+  k = len(nums)
+  return k
+  
+
+
+def majorityElement(nums):
+  map = {}
+  majorityElem = nums[0]
+  for num in nums:
+    map[num] = map.get(num, 0) + 1
+    if map[num] > map[majorityElem]:
+      majorityElem = num
+  print(majorityElem)
+  return majorityElem
+
+
