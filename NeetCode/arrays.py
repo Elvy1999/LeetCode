@@ -92,3 +92,32 @@ def majorityElement(nums):
   return majorityElem
 
 
+class Node:
+  def __init__(self,key,value):
+    self.key = key
+    self.value = value
+    self.next = None
+    
+
+class myHashMap:
+  def __init__(self):
+    self.buckets = [None] * 10_000
+    
+  def hashFunction(self,key):
+    return key % len(self.buckets)
+
+  def put(self, key, value):
+    bucketIndex = self.hashFunction(key)
+    if self.buckets[bucketIndex] == None:
+      self.buckets[bucketIndex] = Node(key,value)
+      return
+    temp = self.buckets[bucketIndex]
+    while temp is not None:
+      if temp.key == key:
+        temp.value = value
+        return
+      elif temp.next == None:
+        temp.next = Node(key,value)
+        return
+      temp = temp.next
+
