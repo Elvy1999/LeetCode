@@ -162,3 +162,31 @@ def sortArray(nums):
 nums = [2,7,9,1,3,5]
 nums = sortArray(nums)
 print(nums)
+
+def sortColors(nums):
+  low = 0
+  mid = int(len(nums)/2)
+  high = len(nums)-1
+  for i in range(len(nums)):
+    if nums[i] == 0:
+      if nums[low] != 0:
+        swap(nums,low,i)
+        low+=1
+    elif nums[i] == 1:
+      if nums[mid] != 1:
+        swap(nums,mid,i)
+        mid+=1
+    elif nums[i] == 2:
+      if nums[high] != 2 and high != mid:
+        swap(nums,high,i)
+        high -= 1
+    
+
+def swap(nums,a,b):
+  temp = nums[a]
+  nums[a] = nums[b]
+  nums[b] = temp
+
+nums = [1,0,1,2]
+sortColors(nums)
+print(nums)
