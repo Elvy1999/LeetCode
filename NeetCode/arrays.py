@@ -121,3 +121,44 @@ class myHashMap:
         return
       temp = temp.next
 
+  def get(self,key):
+    bucketIndex = self.hashFunction(key)
+    temp = self.buckets[bucketIndex]
+    while temp is not None:
+      if temp.key == key:
+        return temp.value
+      temp = temp.next 
+    return -1
+  
+  def remove(self,key):
+    bucketIndex = self.hashFunction(key)
+    temp = self.buckets[bucketIndex]
+    if temp == None: return
+    if temp.key == key:
+      if temp.next is not None:
+        self.buckets[bucketIndex] = temp.next
+      else: 
+        self.buckets[bucketIndex] = None
+      return
+    previous = temp
+    temp = temp.next
+    while temp is not None:
+      if temp.key == key:
+        previous.next = temp.next
+        return 
+      previous = temp
+      temp = temp.next
+  
+
+def sortArray(nums):
+    for i in range(len(nums)-1):
+      for j in range(i+1,len(nums)):
+        if nums[i] > nums[j]:
+          temp = nums[i]
+          nums[i] = nums[j]
+          nums[j] = temp
+    return nums
+  
+nums = [2,7,9,1,3,5]
+nums = sortArray(nums)
+print(nums)
