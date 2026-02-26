@@ -165,28 +165,24 @@ print(nums)
 
 def sortColors(nums):
   low = 0
-  mid = int(len(nums)/2)
+  mid = 0
   high = len(nums)-1
-  for i in range(len(nums)):
-    if nums[i] == 0:
-      if nums[low] != 0:
-        swap(nums,low,i)
-        low+=1
-    elif nums[i] == 1:
-      if nums[mid] != 1:
-        swap(nums,mid,i)
-        mid+=1
-    elif nums[i] == 2:
-      if nums[high] != 2 and high != mid:
-        swap(nums,high,i)
-        high -= 1
-    
+  while mid <= high:
+    if nums[mid] == 0:
+      swap(nums,low,mid)
+      low += 1
+      mid += 1
+    elif nums[mid] == 1:
+      mid += 1
+    else:
+      swap(nums,mid,high)
+      high -= 1
 
 def swap(nums,a,b):
   temp = nums[a]
   nums[a] = nums[b]
   nums[b] = temp
 
-nums = [1,0,1,2]
+nums = [1,0,2,1]
 sortColors(nums)
 print(nums)
