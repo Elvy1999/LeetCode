@@ -186,3 +186,14 @@ def swap(nums,a,b):
 nums = [1,0,2,1]
 sortColors(nums)
 print(nums)
+
+def topKFrequent(nums,k):
+  map = {}
+  for num in nums:
+    map[num] = map.get(num,0) + 1
+  sorted_items = sorted(map.items(), key = lambda item: item[1],reverse=True)
+  answer = [sorted_items[i][0] for i in range(k)]
+  return answer
+  
+  
+
