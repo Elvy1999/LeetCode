@@ -196,4 +196,42 @@ def topKFrequent(nums,k):
   return answer
   
   
+class NumMatrix:
+  
+  def __init__(self,matrix):
+    self.matrix = matrix
 
+  def sumRegion(self,row1,col1,row2,col2):
+    pass
+
+def productExceptSelf(nums):
+  output = []
+  size = len(nums)
+  index = 0
+  while index < size:
+    product = 1
+    for i in range(index):
+      product *= nums[i]
+    for i in range(index+1,size):
+      product *= nums[i]
+    output.append(product)
+    index += 1
+  return output
+
+print(productExceptSelf([-1,0,1,2,3]))
+print(productExceptSelf([1,2,4,6]))
+
+def longestConsecutive(nums):
+  seen = set()
+  added = set()
+  counter = 1 if len(nums) == 1 else 0
+  for num in nums:
+    seen.add(num)
+  for num in nums:
+    if num-1 in seen and num-1 not in added:
+      counter+=1
+      added.add(num-1)
+  return counter 
+  
+
+print(longestConsecutive([2,20,4,10,3,4,5]))
