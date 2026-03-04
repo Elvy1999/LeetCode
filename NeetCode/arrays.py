@@ -222,16 +222,14 @@ print(productExceptSelf([-1,0,1,2,3]))
 print(productExceptSelf([1,2,4,6]))
 
 def longestConsecutive(nums):
-  seen = set()
-  added = set()
-  counter = 1 if len(nums) == 1 else 0
-  for num in nums:
-    seen.add(num)
-  for num in nums:
-    if num-1 in seen and num-1 not in added:
-      counter+=1
-      added.add(num-1)
-  return counter 
-  
+  numSet = set(nums)
+  longest = 0
+  for num in numSet:
+    if(num-1) not in numSet:
+      length = 1
+      while (num + length) in numSet:
+        length += 1
+      longest = max(longest,length)
+  return longest
 
 print(longestConsecutive([2,20,4,10,3,4,5]))
